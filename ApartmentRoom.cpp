@@ -53,8 +53,6 @@ void ApartmentRoom::ApartmentKitchen(Player& player)
 		case 1:
 			PrintFileContents("TextFiles/CheckTheCorpse.txt");
 			Item Letter{ "Letter", "I found it in the dead bodies pocket", 1 };
-			//FINISH THE REST OF THE OPTIONS AND MAYBE ADD TO THE FUNCTIONALITY OF GAME
-			//E.G Checking inventory items and inspecting them
 	}
 }
 

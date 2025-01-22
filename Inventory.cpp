@@ -72,6 +72,31 @@ void Inventory::RemoveWeapon(std::string WeaponName, std::vector<Weapon>& Weapon
 //		but is capable of listing both Weapon class items and Item class items without 
 //		duplicated code. Could potentially use the Weapons as the parameter and find a way to
 //		add the Items class to it
-void Inventory::CheckItemsAndWeaponVectors(std::string Name) {
+template <typename T>
+void Inventory::CheckItemsAndWeaponVectors(std::string const Name, std::vector<T>& List, int& const Type) {
+	for (int i{ 0 }; i < List.size(); i++) {
+		if (List[i].GetItemName() == Name) {
+			// this will get to the correct position to erase the Item
+			List.erase(List.begin() + i);
+			std::cout << Name;
+			ItemOrWeaponSwitch(1);
+			return;
+		}
+	}
+	std::cout << Name;
+	ItemOrWeaponSwitch(2);
+}
 
+void Inventory::ItemOrWeaponSwitch(int& const Type) {
+	switch (Type) {
+
+	case 1:
+		std::cout << " has been found" << std::endl;
+		break;
+
+	case 2:
+		std::cout << " could not be found" << std::endl;
+		break;
+
+	}
 }

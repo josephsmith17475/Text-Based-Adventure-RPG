@@ -17,6 +17,11 @@ public:
 	// no args Constructor
 	Inventory();
 
+	// Getters
+	std::vector<Weapon>& GetWeapons() { return Weapons; }
+
+	std::vector<Item>& GetItems() { return Items; }
+
 	// views players inventory
 	void ViewInventory();
 
@@ -28,7 +33,9 @@ public:
 
 	void RemoveWeapon(std::string item, std::vector<Weapon>& Weapons);
 
-	void CheckItemsAndWeaponVectors(std::string ItemName);
+	template <typename T>
+	void CheckItemsAndWeaponVectors(std::string const Name, std::vector<T>& List, int& const Type);
 
+	void ItemOrWeaponSwitch(int& const Type);
 };
 
