@@ -45,7 +45,7 @@ void StartGame(Player& player)
 	std::cout << "\n\n\n Game Started\n\n\n";
 	Weapon Knife{ "Knife", "I grabbed it while I was escaping the farmhouse", 1, 5};
 	player.GetInventory().AddWeapon(Knife);
-	player.GetInventory().RemoveWeapon("Knife",player.GetInventory().GetWeapons());
+	player.GetInventory().RemoveWeapon("Doggy",player.GetInventory().GetWeapons());
 	Introduction(player);
 
 	ApartmentRoom AR(player);

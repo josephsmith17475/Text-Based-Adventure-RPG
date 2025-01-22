@@ -34,8 +34,8 @@ public:
 	void RemoveWeapon(std::string item, std::vector<Weapon>& Weapons);
 
 	template <typename T>
-	void CheckItemsAndWeaponVectors(std::string const Name, std::vector<T>& List, int& const Type);
+	void CheckItemsAndWeaponVectors(std::string const Name, std::vector<T>& List);
 
-	void ItemOrWeaponSwitch(int& const Type);
+	void ItemOrWeaponSwitch(int const Type);
 };
 

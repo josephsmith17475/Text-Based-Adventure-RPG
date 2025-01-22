@@ -48,32 +48,20 @@ void Inventory::AddWeapon(Weapon &weapon)
 
 void Inventory::RemoveItem(std::string ItemName, std::vector<Item>& Items)
 {
-	for (int i{ 0 }; i < Items.size(); i++) {
-		if (Items[i].GetItemName() == ItemName)
-			// this will get to the correct position to erase the Item
-			Items.erase(Items.begin() + i);
-			return;
-	}
-	std::cout << "Item could not be found" << std::endl;
+	CheckItemsAndWeaponVectors(ItemName, Items);
 }
 
 void Inventory::RemoveWeapon(std::string WeaponName, std::vector<Weapon>& Weapons)
 {
-	for (int i{ 0 }; i < Weapons.size(); i++) {
-		if (Weapons[i].GetItemName() == WeaponName)
-			// this will get to the correct position to erase the Item
-			Weapons.erase(Weapons.begin() + i);
-		return;
-	}
-	std::cout << "Item could not be found" << std::endl;
+	CheckItemsAndWeaponVectors(WeaponName, Weapons);
 }
 
-// Finish the implementation of this function, it will need to take a single vector 
-//		but is capable of listing both Weapon class items and Item class items without 
-//		duplicated code. Could potentially use the Weapons as the parameter and find a way to
-//		add the Items class to it
+// I managed to implement the New function that will reduce repeated code
+// using template functions, i can add to this later for going through the list with 
+// different intents to removing items
+
 template <typename T>
-void Inventory::CheckItemsAndWeaponVectors(std::string const Name, std::vector<T>& List, int& const Type) {
+void Inventory::CheckItemsAndWeaponVectors(std::string const Name, std::vector<T>& List) {
 	for (int i{ 0 }; i < List.size(); i++) {
 		if (List[i].GetItemName() == Name) {
 			// this will get to the correct position to erase the Item
@@ -87,7 +75,7 @@ void Inventory::CheckItemsAndWeaponVectors(std::string const Name, std::vector<T
 	ItemOrWeaponSwitch(2);
 }
 
-void Inventory::ItemOrWeaponSwitch(int& const Type) {
+void Inventory::ItemOrWeaponSwitch(int const Type) {
 	switch (Type) {
 
 	case 1:
