@@ -2,10 +2,10 @@
 #include "Weapon.h"
 #include <string>
 #include <vector>
+#include "GameLogic.h"
 
-// Managed to weapon and item system and now developing the inventory system
-// -Focus on making the inventory system including adding a add item/weapon to invnetory
-//  and a item/weapon removal system
+// Function Prototype
+void PrintFileContents(std::string FileLocation);
 
 class Inventory
 {
@@ -34,8 +34,10 @@ public:
 	void RemoveWeapon(std::string item, std::vector<Weapon>& Weapons);
 
 	template <typename T>
-	void CheckItemsAndWeaponVectors(std::string const Name, std::vector<T>& List);
+	void CheckItemsAndWeaponVectors(std::string Name, std::vector<T>& List, int TypeOfSearch);
 
 	void ItemOrWeaponSwitch(int const Type);
+
+	void InspectItemOrWeapon(std::string InspectChoice, std::vector<Item>& Items, std::vector<Weapon>& Weapons);
 };
 

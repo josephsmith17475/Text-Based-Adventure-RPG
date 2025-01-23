@@ -23,11 +23,10 @@ void Inventory::ViewInventory()
 
 	std::cout << "\n\nWould you like to inspect a item? (Yes/No) :";
 	std::cin >> Choice;
-
 	if (Choice == "Yes" || Choice == "yes") {
-		std::cout << "\n\nPlease enter the name of the item you'd like to inspect: ";
+		std::cout << "\n\nPlease enter the name of the item or weapon you'd like to inspect: ";
 		std::cin >> InpectChoice;
-
+		InspectItemOrWeapon(InpectChoice, Items, Weapons);
 
 	}
 	if (Choice == "No" || Choice == "no") {
@@ -48,27 +47,42 @@ void Inventory::AddWeapon(Weapon &weapon)
 
 void Inventory::RemoveItem(std::string ItemName, std::vector<Item>& Items)
 {
-	CheckItemsAndWeaponVectors(ItemName, Items);
+	CheckItemsAndWeaponVectors(ItemName, Items, 1);
 }
 
 void Inventory::RemoveWeapon(std::string WeaponName, std::vector<Weapon>& Weapons)
 {
-	CheckItemsAndWeaponVectors(WeaponName, Weapons);
+	CheckItemsAndWeaponVectors(WeaponName, Weapons, 1);
 }
 
-// I managed to implement the New function that will reduce repeated code
-// using template functions, i can add to this later for going through the list with 
-// different intents to removing items
 
+// TypeOfSearch is for the type of search/action that will occur during the lists search
+//
+//		1 = Removing Items from the list
+//		
+//		2 = Inspecting Items or Weapons
 template <typename T>
-void Inventory::CheckItemsAndWeaponVectors(std::string const Name, std::vector<T>& List) {
+void Inventory::CheckItemsAndWeaponVectors(std::string Name, std::vector<T>& List, int TypeOfSearch) {
 	for (int i{ 0 }; i < List.size(); i++) {
 		if (List[i].GetItemName() == Name) {
 			// this will get to the correct position to erase the Item
-			List.erase(List.begin() + i);
-			std::cout << Name;
-			ItemOrWeaponSwitch(1);
-			return;
+			switch (TypeOfSearch) {
+
+			//		==== Erasing Items/Weapons ====
+			case 1:
+				List.erase(List.begin() + i);
+				std::cout << Name;
+				ItemOrWeaponSwitch(1);
+				return;
+				break;
+
+			//		==== Inspecting Items ====
+			case 2:
+				std::string FileLocation{ "InventoryItems/" + Name + ".txt" };
+				PrintFileContents(FileLocation);
+				return;
+				break;
+			}
 		}
 	}
 	std::cout << Name;
@@ -87,4 +101,8 @@ void Inventory::ItemOrWeaponSwitch(int const Type) {
 		break;
 
 	}
+}
+
+void Inventory::InspectItemOrWeapon(std::string InspectChoice, std::vector<Item>& Items, std::vector<Weapon>& Weapons) {
+	
 }

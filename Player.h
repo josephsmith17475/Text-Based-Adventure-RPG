@@ -1,8 +1,9 @@
 #pragma once
 
+#include"Inventory.h"
+#include "GameLogic.h"
 #include<iostream>
 #include<string.h>
-#include"Inventory.h"
 
 class Player
 {

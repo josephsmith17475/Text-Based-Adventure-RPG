@@ -1,5 +1,8 @@
 #pragma once
 #include <string>
+
+//	Function Prototypes
+
 class GameLogic
 {
 private:
