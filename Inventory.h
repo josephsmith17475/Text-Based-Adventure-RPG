@@ -2,10 +2,8 @@
 #include "Weapon.h"
 #include <string>
 #include <vector>
-#include "GameLogic.h"
 
 // Function Prototype
-void PrintFileContents(std::string FileLocation);
 
 class Inventory
 {

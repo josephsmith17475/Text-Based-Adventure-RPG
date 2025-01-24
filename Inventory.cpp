@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Inventory.h"
+#include "GameLogic.h"
 #include <iostream>
 
 Inventory::Inventory()
@@ -71,38 +72,44 @@ void Inventory::CheckItemsAndWeaponVectors(std::string Name, std::vector<T>& Lis
 			//		==== Erasing Items/Weapons ====
 			case 1:
 				List.erase(List.begin() + i);
-				std::cout << Name;
-				ItemOrWeaponSwitch(1);
+				// This Function is for Troubleshooting mainly
+				// 
+				//	std::cout << Name;
+				//	ItemOrWeaponSwitch(1);
 				return;
 				break;
 
 			//		==== Inspecting Items ====
 			case 2:
 				std::string FileLocation{ "InventoryItems/" + Name + ".txt" };
-				PrintFileContents(FileLocation);
+				GameLogic GL{};
+				GL.PrintFileContents(FileLocation);
 				return;
 				break;
 			}
 		}
 	}
-	std::cout << Name;
-	ItemOrWeaponSwitch(2);
+	// This Function is for Troubleshooting mainly
+	// 
+	//	std::cout << Name;
+	//	ItemOrWeaponSwitch(2);
 }
 
 void Inventory::ItemOrWeaponSwitch(int const Type) {
 	switch (Type) {
 
 	case 1:
-		std::cout << " has been found" << std::endl;
+		std::cout << " has been found\n" << std::endl;
 		break;
 
 	case 2:
-		std::cout << " could not be found" << std::endl;
+		std::cout << " could not be found\n" << std::endl;
 		break;
 
 	}
 }
 
 void Inventory::InspectItemOrWeapon(std::string InspectChoice, std::vector<Item>& Items, std::vector<Weapon>& Weapons) {
-	
+	CheckItemsAndWeaponVectors(InspectChoice, Items, 2);
+	CheckItemsAndWeaponVectors(InspectChoice, Weapons, 2);
 }

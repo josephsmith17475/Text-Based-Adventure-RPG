@@ -47,7 +47,7 @@ void Main_Menu::Options()
     std::cout << "\n\n Options yet to be implemented..... \n\n\n";
 }
 
-void Main_Menu::MenuSelection()
+int Main_Menu::MenuSelection()
 {
     while (true)
     {
@@ -56,7 +56,7 @@ void Main_Menu::MenuSelection()
 
             // Start Game
         case 1:
-            return;
+            return 1;
             break;
 
             // Options
@@ -66,7 +66,7 @@ void Main_Menu::MenuSelection()
 
             // Quit Game
         case 3:
-            return;
+            return 3;
             break;
 
         default:

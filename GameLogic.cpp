@@ -38,6 +38,7 @@ void GameLogic::PrintFileContents(std::string FileLocation)
 	std::ifstream file(FileLocation);
 	while (std::getline(file, text))
 	{
+		full_text.push_back('\t');
 		full_text += text;
 		full_text.push_back('\n');
 	}

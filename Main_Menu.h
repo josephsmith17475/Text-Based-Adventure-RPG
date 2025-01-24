@@ -11,7 +11,7 @@ public:
 
 	void Options();
 
-	void MenuSelection();
+	int MenuSelection();
 
 	// -------- Getters --------
 	int GetChoice() { return choice; }

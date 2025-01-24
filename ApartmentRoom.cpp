@@ -19,7 +19,7 @@ void ApartmentRoom::ApartmentHall(Player& player)
 	int choice;
 	std::cout << "\n=============\n\n"
 		"To make your choice in the game enter the number assigned to the option.\n\n"
-		"You can view your inventory at anytime by entering the I key as a option.\n\n"
+		"You can view your inventory at anytime by entering the indicated key as a option.\n\n"
 		"=============" << std::endl;
 
 	ShowChoices(4, std::string("Go to kitchen"), std::string("Go to Bedroom"), std::string("Go to Living room"), std::string("Go to bathroom"));
@@ -46,13 +46,25 @@ void ApartmentRoom::ApartmentKitchen(Player& player)
 		"the window is shattered with cloth hanging from the sharded glass,\n"
 		"most of the cupboards are hanging from their hinges.\n" << std::endl;
 
-	ShowChoices(3, std::string("Check the corpse"), std::string("Check the window"), std::string("Check the remaining cupboards"));
-	int choice;
-	std::cin >> choice;
-	switch (choice) {
+	bool LoopCompleted{ true };
+	while (LoopCompleted) {
+		ShowChoices(4, std::string("Check the corpse"), std::string("Check the window"), std::string("Check the remaining cupboards"), std::string("Go back to the ApartmentHall"));
+		int choice{};
+		std::cin >> choice;
+		switch (choice) {
 		case 1:
+		{
 			PrintFileContents("TextFiles/CheckTheCorpse.txt");
 			Item Letter{ "Letter", "I found it in the dead bodies pocket", 1 };
+			player.GetInventory().AddItem(Letter);
+			break;
+		}
+		case 2:
+		{
+			PrintFileContents("TextFiles/CheckTheWindow.txt");
+			break;
+		}
+		}
 	}
 }
 
